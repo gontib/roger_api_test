@@ -9,9 +9,13 @@ class TmdbApi(object):
 
     def __init__(self):
 
+        api_key = os.getenv("TMDB_KEY")
+        if api_key is None:
+            raise Exception("The api_key is missing.")
+
         self.base_url = "https://api.themoviedb.org/3"
-        # self.api_key = "?api_key={}".format(os.getenv("TMDB_KEY"))
-        self.api_key = "?api_key=cf08d311644be589ae41171489cdf47f"
+        self.api_key = "?api_key={}".format(api_key)
+
 
     def _get_appended_data(self, data_to_append):
         return "&append_to_response={}".format(",".join(data_to_append) if isinstance(data_to_append, list) else data_to_append)
@@ -31,13 +35,15 @@ class TmdbMoviesApi(TmdbApi):
         self.movie_url = "{}/movie".format(self.base_url)
 
     def get_movie_details(self, media_id, detail_type=None, append_detail=None, check_response_code=True):
+        # Verify detail_type and append_detail aren't being used at the same time
         if detail_type is not None and append_detail is not None:
             raise Exception("You don't need to set data_type if you are using append_detail.")
 
+        # Create the url
         detail_type = "/{}".format(detail_type) if detail_type is not None else ""
         append = "{}".format(self._get_appended_data(append_detail)) if append_detail is not None else ""
-
         url = "{}/{}{}{}{}".format(self.movie_url, str(media_id), detail_type, self.api_key, append)
+
         response = requests.get(url)
 
         if check_response_code:
