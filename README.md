@@ -7,4 +7,5 @@ virtualenv
 
 To run the test:
 cd into the root of the repo then execute the run_test.sh file with your api key as an argument.
+
 ./run_tests.sh \<your api key\>
