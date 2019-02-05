@@ -72,3 +72,36 @@ class MovieApiTests(BaseTest):
         self.assertTrue(data["title"] == title, "The returned movie title: {} did't match the expected title: {}.".format(data["title"], title))
         self.assertIn("release_dates", data)
         self.assertIn("credits", data)
+
+    def test_authentication(self):
+        # TODO This test will be to verify that a session can successfully authenticate.
+        pass
+
+    def test_no_key(self):
+        # TODO This test will be to verify that a negative response is received when no api token is given in the request.
+        pass
+
+    def test_guest_authentication(self):
+        # TODO This test will be to verify that a guest session can successfully authenticate.
+        pass
+
+    def test_rate_movie(self):
+        # TODO This test will be to verify that a movies can be successfully rated.
+        pass
+
+    def test_get_movie_lists(self):
+        # TODO This test will be to verify that a list of the lists the movie belongs to is returned.
+        pass
+
+    def test_get_upcoming_movies(self):
+        # TODO This test will be to verify that a list of movies coming to theaters soon is returned.
+        pass
+
+    def test_get_popular_movies(self):
+        # TODO This test will be to verify that a list of the current most popular movies is returned.
+        pass
+
+    def test_delete_rating(self):
+        # TODO This test will be to verify a negative response when searching for a movie title that doesn't exist.
+        pass
+

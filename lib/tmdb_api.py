@@ -9,6 +9,7 @@ class TmdbApi(object):
 
     def __init__(self):
 
+        # Grab the api key from the os environment an verify we actually have it
         api_key = os.getenv("TMDB_KEY")
         if api_key is None:
             raise Exception("The api_key is missing.")
